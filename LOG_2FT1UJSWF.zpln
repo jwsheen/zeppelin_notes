@@ -720,9 +720,9 @@
       "status": "FINISHED"
     },
     {
-      "text": "%sh\ncd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james \u0026\u0026 git add *.zpln\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james/소량물품기부 \u0026\u0026 git add *.zpln\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james \u0026\u0026 ln -s ../물품기부/참여흐름_2FWX64RUT.zpln ./p참여흐름_2FWX64RUT.zpln\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james \u0026\u0026 git commit -m \"some notes\"\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/물품기부 \u0026\u0026 ls\n# ls /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james\n\n",
+      "text": "%sh\ncd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james \u0026\u0026 git add *.zpln\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james/소량물품기부 \u0026\u0026 git add *.zpln\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james \u0026\u0026 ln -s ../물품기부/참여흐름_2FWX64RUT.zpln ./p참여흐름_2FWX64RUT.zpln\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james \u0026\u0026 git commit -m \"some notes\"\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/물품기부 \u0026\u0026 ls\n# ls /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james\n# cd /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james \u0026\u0026 git commit -m \"commit\"\n# cp /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/물품기부/*.zpln /home/ubuntu/workspace/zeppelin-0.9.0-bin-all/notebook/james \n#\u0026\u0026 git push -u origin main\n\n\n\n",
       "user": "admin",
-      "dateUpdated": "2021-02-15 21:07:47.551",
+      "dateUpdated": "2021-02-15 21:16:24.399",
       "progress": 0,
       "config": {
         "editorSetting": {
@@ -740,14 +740,23 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "ActiveUser_2FWBVPU7N.zpln\nLOG_2FT1UJSWF.zpln\nREADME.md\nUserBehavior_2FZMGR7S5.zpln\np참여흐름_2FWX64RUT.zpln\nupload_2FR891WX4.zpln\n물품나눔_2FTDVRTBM.zpln\n소량물품기부\n제플린공부_2FTX6C414.zpln\n참여기록 검색_2FS9HUMKB.zpln\n참여흐름_2FWX64RUT.zpln\n"
+          }
+        ]
+      },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
       "jobName": "paragraph_1613354676085_1432546538",
       "id": "paragraph_1613354676085_1432546538",
       "dateCreated": "2021-02-15 11:04:36.085",
-      "dateStarted": "2021-02-15 21:03:40.415",
-      "dateFinished": "2021-02-15 21:03:40.426",
+      "dateStarted": "2021-02-15 21:16:04.443",
+      "dateFinished": "2021-02-15 21:16:04.455",
       "status": "FINISHED"
     },
     {
