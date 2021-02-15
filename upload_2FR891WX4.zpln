@@ -1,0 +1,75 @@
+{
+  "paragraphs": [
+    {
+      "text": "%sh\nwget test.xls \"https://docs.google.com/spreadsheets/d/1VI6kWCr1aSAlINFEfrTJ2DPa6t5mY9aIZ4jHWgawZe8/edit?usp\u003dsharing\"\n",
+      "user": "admin",
+      "dateUpdated": "2020-11-27 03:45:55.726",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "--2020-11-27 03:45:55--  http://test.xls/\nResolving test.xls (test.xls)... failed: Name or service not known.\nwget: unable to resolve host address ‘test.xls’\n--2020-11-27 03:45:55--  https://docs.google.com/spreadsheets/d/1VI6kWCr1aSAlINFEfrTJ2DPa6t5mY9aIZ4jHWgawZe8/edit?usp\u003dsharing\nResolving docs.google.com (docs.google.com)... 172.217.175.46, 2404:6800:4004:80c::200e\nConnecting to docs.google.com (docs.google.com)|172.217.175.46|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: unspecified [text/html]\nSaving to: ‘edit?usp\u003dsharing.2’\n\n     0K .......... .......... .......... .......... ..........  605K\n    50K .......... .......... .......... .......... .......... 2.01M\n   100K .......... .......... .......... .......... .......... 2.15M\n   150K .......... .......... .......... .......... .......... 1.06M\n   200K .......... .......... .......... .......... .......... 1.09M\n   250K .......... .......... .......... .......... .......... 1.52M\n   300K .......... .......... .......... .......... .......... 3.74M\n   350K .......... .......... .......... .......... .......... 2.14M\n   400K .......... .......... .......... .......... .......... 6.34M\n   450K .......... .......... .......... .......... .......... 6.70M\n   500K .......... .......... .......... .......... .......... 9.50M\n   550K .......... .......... .......... .......... .......... 8.80M\n   600K .......... .......... .......... .......... .......... 8.13M\n   650K .......... .......... ....                             9.75M\u003d0.3s\n\n2020-11-27 03:45:57 (2.04 MB/s) - ‘edit?usp\u003dsharing.2’ saved [690484]\n\nFINISHED --2020-11-27 03:45:57--\nTotal wall clock time: 1.8s\nDownloaded: 1 files, 674K in 0.3s (2.04 MB/s)\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "ExitValue: 4"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1606224121374_644420749",
+      "id": "paragraph_1606224121374_644420749",
+      "dateCreated": "2020-11-24 13:22:01.374",
+      "dateStarted": "2020-11-27 03:45:55.728",
+      "dateFinished": "2020-11-27 03:45:57.605",
+      "status": "ERROR"
+    },
+    {
+      "text": "%sh\n",
+      "user": "admin",
+      "dateUpdated": "2020-11-24 13:29:49.086",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1606224589085_327837721",
+      "id": "paragraph_1606224589085_327837721",
+      "dateCreated": "2020-11-24 13:29:49.086",
+      "status": "READY"
+    }
+  ],
+  "name": "upload",
+  "id": "2FR891WX4",
+  "defaultInterpreterGroup": "python",
+  "version": "0.9.0-preview1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {
+    "isRunning": true
+  }
+}

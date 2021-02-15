@@ -1,0 +1,808 @@
+{
+  "paragraphs": [
+    {
+      "title": "기부참여기록 검색",
+      "text": "-- 기부자\nselect created_at as oTime, event_name,\n    substr(donor_address,1,instr(donor_address,\u0027 \u0027)) as 지역, \n    concat(\"%html\u003ca href\u003dhttps://donate-admin.beautifulstore.org/#/classifications/\",id,\"/create\u003e\",delivery_reservation_no,\"\u003c/a\u003e\") as 승인번호, delivery_departure as 편의점, \n    donor_name as 성명, donor_mobile as 휴대폰, donor_address, \n    status, \u0027기부\u0027 as property \nfrom donations\nwhere date(created_at) \u003e\u003d \u0027${1.fromDate\u003d}\u0027\n    and donor_mobile like \u0027${2.Phone\u003d}%\u0027\n    and donor_name like \u0027${3.Name\u003d}%\u0027\n    and delivery_departure like \u0027${4.Event\u003d}%\u0027\n    and delivery_reservation_no like \u0027${5.regNo\u003d}%\u0027\n    and status like \u0027${6.Status\u003d%%(All),DeliveryReserved(신청)|DonationCompleted(도착)|DeliveryReservedCancel(신청취소)|DonationClassification(선별중)|%%(All)}\u0027\n    and donor_mobile NOT in (\n        \u0027uvbANnmpZzKhlCw\u003d\u0027,\u0027uvbAMnuuZjOgkis\u003d\u0027,\u0027uvbANnGpZzSpkSk\u003d\u0027,\u0027uvbAPHGiaj6tkSk\u003d\u0027,\u0027uvbAMnqiazGglig\u003d\u0027,\n\u0027uvbAMHivYT+gkCs\u003d\u0027,\u0027uvbANXmrZjepkS4\u003d\u0027,\u0027uvbAM3qpZzaqkS0\u003d\u0027,\u0027uvbAPXmvaj+slig\u003d\u0027,\u0027uvbAN3mrYjGrlyo\u003d\u0027,\n\u0027uvbAM32rYzehkS4\u003d\u0027,\u0027uvbAMHuoYjCrkC0\u003d\u0027,\u0027uvbANnuuazSqkyo\u003d\u0027,\u0027uvbAN3ijZDComSo\u003d\u0027,\u0027uvbAMHirYTOgki4\u003d\u0027,\n\u0027uvbAPXiqYjCqkCk\u003d\u0027,\u0027uvbANnmqaj6hmS0\u003d\u0027,\u0027uvbAPXCrZDKrmSM\u003d\u0027,\u0027uvbAMHiuajegkSk\u003d\u0027,\u0027uvbANn+pazWqlCg\u003d\u0027,\n\u0027uvbAMHijYTGtlSs\u003d\u0027,\u0027uvbANnquazatkyM\u003d\u0027,\u0027uvbAPX6uZz6ukCg\u003d\u0027,\u0027uvbAM32uYTerkys\u003d\u0027,\u0027uvbANnquYDCslCw\u003d\u0027,\n\u0027uvbANn+sYzCqkSk\u003d\u0027,\u0027uvbAMHusZzOqkys\u003d\u0027,\u0027uvbAMHCoYj6vkyI\u003d\u0027\n    )\nUNION\n\n-- 테스터\nselect date_format(created_at,\u0027%Y-%m-%d %H\u0027) as oTime, event_name,\n    substr(donor_address,1,instr(donor_address,\u0027 \u0027)) as 지역,\n    delivery_reservation_no as 승인번호, delivery_departure as 편의점, \n    donor_name as 성명, donor_mobile as 휴대폰, donor_address,\n    status, \u0027TEST\u0027 as property \nfrom donations\nwhere date(created_at) \u003e\u003d \u0027${1.fromDate\u003d}\u0027\n    and donor_mobile like \u0027${2.Phone\u003d}%\u0027\n    and donor_name like \u0027${3.Name\u003d}%\u0027\n    and delivery_departure like \u0027${4.Event\u003d}%\u0027\n    and delivery_reservation_no like \u0027${5.regNo\u003d}%\u0027\n    and status like \u0027${6.Status\u003d%%(All),DeliveryReserved(신청)|DonationCompleted(도착)|DeliveryReservedCancel(신청취소)|DonationClassification(선별중)|%%(All)}\u0027\n    and donor_mobile in (\n        \u0027uvbANnmpZzKhlCw\u003d\u0027,\u0027uvbAMnuuZjOgkis\u003d\u0027,\u0027uvbANnGpZzSpkSk\u003d\u0027,\u0027uvbAPHGiaj6tkSk\u003d\u0027,\u0027uvbAMnqiazGglig\u003d\u0027,\n\u0027uvbAMHivYT+gkCs\u003d\u0027,\u0027uvbANXmrZjepkS4\u003d\u0027,\u0027uvbAM3qpZzaqkS0\u003d\u0027,\u0027uvbAPXmvaj+slig\u003d\u0027,\u0027uvbAN3mrYjGrlyo\u003d\u0027,\n\u0027uvbAM32rYzehkS4\u003d\u0027,\u0027uvbAMHuoYjCrkC0\u003d\u0027,\u0027uvbANnuuazSqkyo\u003d\u0027,\u0027uvbAN3ijZDComSo\u003d\u0027,\u0027uvbAMHirYTOgki4\u003d\u0027,\n\u0027uvbAPXiqYjCqkCk\u003d\u0027,\u0027uvbANnmqaj6hmS0\u003d\u0027,\u0027uvbAPXCrZDKrmSM\u003d\u0027,\u0027uvbAMHiuajegkSk\u003d\u0027,\u0027uvbANn+pazWqlCg\u003d\u0027,\n\u0027uvbAMHijYTGtlSs\u003d\u0027,\u0027uvbANnquazatkyM\u003d\u0027,\u0027uvbAPX6uZz6ukCg\u003d\u0027,\u0027uvbAM32uYTerkys\u003d\u0027,\u0027uvbANnquYDCslCw\u003d\u0027,\n\u0027uvbANn+sYzCqkSk\u003d\u0027,\u0027uvbAMHusZzOqkys\u003d\u0027,\u0027uvbAMHCoYj6vkyI\u003d\u0027\n    )\norder by oTime desc\n;",
+      "user": "anonymous",
+      "dateUpdated": "2021-01-04 14:23:13.878",
+      "progress": 0,
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 534.01,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "oTime0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0.0,
+                          "direction": "asc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "event_name1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "지역2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "승인번호3",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "편의점4",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "성명5",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "휴대폰6",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "donor_address7",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "status8",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "property9",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "oTime": "string",
+                      "event_name": "string",
+                      "지역": "string",
+                      "승인번호": "string",
+                      "편의점": "string",
+                      "성명": "string",
+                      "휴대폰": "string",
+                      "donor_address": "string",
+                      "status": "string",
+                      "property": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "rotate",
+                  "stacked": true
+                }
+              },
+              "commonSetting": {},
+              "keys": [],
+              "groups": [
+                {
+                  "name": "status",
+                  "index": 8.0,
+                  "aggr": "sum"
+                },
+                {
+                  "name": "property",
+                  "index": 9.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "runOnSelectionChange": true,
+        "title": true,
+        "editorHide": true,
+        "lineNumbers": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {
+          "Phone": "",
+          "Name": "",
+          "Date": "2020-11-20",
+          "Status": "%%",
+          "fromDate": "2020-12-11",
+          "Event": "",
+          "승인번호": "",
+          "1.fromDate": "2020-12-12",
+          "2.Phone": "",
+          "3.Name": "",
+          "4.Event": "",
+          "5.승인번호": "",
+          "6.Status": "%%(All)",
+          "5.regNo": ""
+        },
+        "forms": {
+          "1.fromDate": {
+            "type": "TextBox",
+            "name": "1.fromDate",
+            "displayName": "1.fromDate",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "2.Phone": {
+            "type": "TextBox",
+            "name": "2.Phone",
+            "displayName": "2.Phone",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "3.Name": {
+            "type": "TextBox",
+            "name": "3.Name",
+            "displayName": "3.Name",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "4.Event": {
+            "type": "TextBox",
+            "name": "4.Event",
+            "displayName": "4.Event",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "5.regNo": {
+            "type": "TextBox",
+            "name": "5.regNo",
+            "displayName": "5.regNo",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "6.Status": {
+            "type": "Select",
+            "options": [
+              {
+                "value": "DeliveryReserved",
+                "displayName": "신청"
+              },
+              {
+                "value": "DonationCompleted",
+                "displayName": "도착"
+              },
+              {
+                "value": "DeliveryReservedCancel",
+                "displayName": "신청취소"
+              },
+              {
+                "value": "DonationClassification",
+                "displayName": "선별중"
+              },
+              {
+                "value": "%%",
+                "displayName": "All"
+              }
+            ],
+            "name": "6.Status",
+            "displayName": "6.Status",
+            "defaultValue": "%%(All)",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "oTime\tevent_name\t지역\t승인번호\t편의점\t성명\t휴대폰\tdonor_address\tstatus\tproperty\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1606090915072_2028003176",
+      "id": "paragraph_1606090915072_2028003176",
+      "dateCreated": "2020-11-23 00:21:55.072",
+      "dateStarted": "2020-12-30 21:48:00.801",
+      "dateFinished": "2020-12-30 21:48:00.838",
+      "status": "FINISHED"
+    },
+    {
+      "title": "중복신청자 검색",
+      "text": "select donor_name as 성명, \n    delivery_departure as 편의점, \n    delivery_reservation_no as 승인번호,  \n    date_format(created_at,\u0027%Y-%m-%d %H\u0027) as oTime,\n    substr(donor_address,1,instr(donor_address,\u0027 \u0027)) as 지역, \n    donor_mobile, donor_address, \n    status, \u0027기부\u0027 as property \nfrom donations\nwhere date(created_at) \u003e\u003d \u0027${fromDate\u003d}\u0027\n    and donor_mobile like \u0027${Phone\u003d}%\u0027\n    and donor_name like \u0027${Name\u003d}%\u0027\n    and delivery_departure like \u0027${Event\u003d}%\u0027\n    and status like \u0027${Status\u003d%(All),DeliveryReserved(신청)|DonationCompleted(도착)|DeliveryReservedCancel(신청취소)|DonationClassification(선별중)|%(All)}\u0027\n    and donor_mobile in ( select donor_mobile from donations where date(created_at) \u003e\u003d \u0027${fromDate\u003d}\u0027 group by date(created_at), donor_mobile having count(1) \u003e 1 )\n    ;",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-14 01:48:01.285",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "성명": "string",
+                      "편의점": "string",
+                      "oTime": "string",
+                      "지역": "string",
+                      "승인번호": "string",
+                      "donor_mobile": "string",
+                      "donor_address": "string",
+                      "status": "string",
+                      "property": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "oTime",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "Province",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "runOnSelectionChange": true,
+        "editorHide": false,
+        "title": true
+      },
+      "settings": {
+        "params": {
+          "fromDate": "2020-12-08",
+          "Phone": "",
+          "Name": "",
+          "Event": "",
+          "Status": "%"
+        },
+        "forms": {
+          "fromDate": {
+            "type": "TextBox",
+            "name": "fromDate",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "Phone": {
+            "type": "TextBox",
+            "name": "Phone",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "Name": {
+            "type": "TextBox",
+            "name": "Name",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "Event": {
+            "type": "TextBox",
+            "name": "Event",
+            "defaultValue": "",
+            "hidden": false
+          },
+          "Status": {
+            "type": "Select",
+            "options": [
+              {
+                "value": "DeliveryReserved",
+                "displayName": "신청"
+              },
+              {
+                "value": "DonationCompleted",
+                "displayName": "도착"
+              },
+              {
+                "value": "DeliveryReservedCancel",
+                "displayName": "신청취소"
+              },
+              {
+                "value": "DonationClassification",
+                "displayName": "선별중"
+              },
+              {
+                "value": "%",
+                "displayName": "All"
+              }
+            ],
+            "name": "Status",
+            "defaultValue": "%(All)",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "성명\t편의점\t승인번호\toTime\t지역\tdonor_mobile\tdonor_address\tstatus\tproperty\nYH5w6O4bv54h\tCU 유성궁동점\t3132012080002\t2020-12-08 11\t대전광역시 \tuvbANn6oZzShlC4\u003d\t대전광역시 유성구 궁동로10번길 23 (궁동)\tDeliveryReserved\t기부\nYH5w6O4bv54h\tCU 유성궁동점\t3132012080003\t2020-12-08 11\t대전광역시 \tuvbANn6oZzShlC4\u003d\t대전광역시 유성구 궁동로10번길 23 (궁동)\tDeliveryReserved\t기부\nYH5w6O4bv54h\tCU 궁동행복점\t3132012080004\t2020-12-08 11\t대전광역시 \tuvbANn6oZzShlC4\u003d\t대전광역시 유성구 궁동로10번길 23 (궁동)\tDonationCompleted\t기부\nYH5w6O4bv54h\tCU 궁동행복점\t3132012080006\t2020-12-08 11\t대전광역시 \tuvbANn6oZzShlC4\u003d\t대전광역시 유성구 궁동로10번길 23 (궁동)\tDonationCompleted\t기부\nZkFg6NQbv54F\tCU 안양관동점\t3132012080009\t2020-12-08 12\t경기도 \tuvbAN3usYz6plyM\u003d\t경기도 안양시 만안구 삼봉로 66 (박달동, 브라운스톤 하나마을)\tDonationCompleted\t기부\nZlpE6MEDuakl\tCU 대치예영점\t3132012080012\t2020-12-08 13\t서울특별시 \tuvbAN3qoZTaokiw\u003d\t서울특별시 강남구 삼성로63길 12-3 (대치동)\tDonationCompleted\t기부\nZlpE6MEDuakl\tCU 대치예영점\t3132012080015\t2020-12-08 13\t서울특별시 \tuvbAN3qoZTaokiw\u003d\t서울특별시 강남구 삼성로63길 12-3 (대치동)\tDeliveryReserved\t기부\nZlpE6MEDuakl\tCU 대치예영점\t3132012080016\t2020-12-08 13\t서울특별시 \tuvbAN3qoZTaokiw\u003d\t서울특별시 강남구 삼성로63길 12-3 (대치동)\tDeliveryReserved\t기부\nZkFg6NQbv54F\tCU 안양관동점\t3132012080026\t2020-12-08 15\t경기도 \tuvbAN3usYz6plyM\u003d\t경기도 안양시 만안구 삼봉로 66 (박달동, 브라운스톤 하나마을)\tDonationCompleted\t기부\nZmZA6NwfuZsl\tCU 도림로점\t3132012080031\t2020-12-08 18\t서울특별시 \tuvbAPHGiYz+tkS0\u003d\t서울특별시 영등포구 가마산로 426 (신길동, 신길센트럴아이파크)\tDeliveryReserved\t기부\nZmZA6NwfuZsl\tCU 도림로점\t3132012080032\t2020-12-08 18\t서울특별시 \tuvbAPHGiYz+tkS0\u003d\t서울특별시 영등포구 가마산로 426 (신길동, 신길센트럴아이파크)\tDeliveryReserved\t기부\nYH5w7+Ynv5s1\tCU\t3132012090008\t2020-12-09 10\t경기도 \tuvbAPX2jZjagkiw\u003d\t경기도 용인시 기흥구 서천서로 27 (서천동, 센트럴파크원)\tDeliveryReserved\t기부\nYH5w7+Ynv5s1\tCU\t3132012090009\t2020-12-09 10\t경기도 \tuvbAPX2jZjagkiw\u003d\t경기도 용인시 기흥구 서천서로 27 (서천동, 센트럴파크원)\tDeliveryReserved\t기부\nYH5w6M07uakh\tCU 국제시장사거리점\t3132012090024\t2020-12-09 17\t부산광역시 \tuvbAMn+vYzCuly0\u003d\t부산광역시 중구 흑교로45번길 28 (보수동3가, 보수허브센티움)\tDeliveryReserved\t기부\nYH5w6M07uakh\tCU 보수원룸점\t3132012090025\t2020-12-09 17\t부산광역시 \tuvbAMn+vYzCuly0\u003d\t부산광역시 중구 흑교로45번길 28 (보수동3가, 보수허브센티움)\tDeliveryReserved\t기부\nYHdl6O4bv54F\tCU 제주서광점\t3132012090030\t2020-12-09 18\t제주특별자치도 \tuvbAMX6uYD+tkSs\u003d\t제주특별자치도 제주시 서사로21길 26-1 (삼도일동)\tDeliveryReserved\t기부\nYHdl6O4bv54F\tCU 제주서광점\t3132012090034\t2020-12-09 19\t제주특별자치도 \tuvbAMX6uYD+tkSs\u003d\t제주특별자치도 제주시 서사로21길 26-1 (삼도일동)\tDeliveryReserved\t기부\nZll06NQbvo4A\tCU 수원권선점\t3132012090036\t2020-12-09 21\t경기도 \tuvbAN3GvajCuly8\u003d\t경기도 수원시 권선구 권중로 158 (권선동, 벽산아파트)\tDeliveryReserved\t기부\nZll06NQbvo4A\tCU 수원권선점\t3132012090037\t2020-12-09 21\t경기도 \tuvbAN3GvajCuly8\u003d\t경기도 수원시 권선구 권중로 158 (권선동, 벽산아파트)\tDeliveryReserved\t기부\nZkxQ6MEDv5s1\tCU 군포더드림2호점\t3132012090040\t2020-12-09 22\t경기도 \tuvbAN3GsYTapmCI\u003d\t경기도 군포시 송부로96번길 13 (도마교동, 금강펜테리움센트럴파크 3차)\tDeliveryReserved\t기부\nZkxQ6MEDv5s1\tCU 군포더드림2호점\t3132012090041\t2020-12-09 23\t경기도 \tuvbAN3GsYTapmCI\u003d\t경기도 군포시 송부로96번길 13 (도마교동, 금강펜테리움센트럴파크 3차)\tDeliveryReserved\t기부\nZ1Js6Nc3uakl\tCU 주안해마루점\t3132012090042\t2020-12-09 23\t인천광역시 \tuvbAMHGsYzGskyk\u003d\t인천광역시 미추홀구 경원대로 884 (주안동, 주안더월드스테이트)\tDeliveryReserved\t기부\nZ1Js6OonuaA1\tCU 주안해마루점\t3132012090043\t2020-12-09 23\t인천광역시 \tuvbAMHGsYzGskyk\u003d\t인천광역시 미추홀구 경원대로 884 (주안동, 주안더월드스테이트)\tDeliveryReserved\t기부\nZlpE6NQbv5s1\tCU 아산창용점\t3132012100003\t2020-12-10 08\t충청남도 \tuvbAMHiuYjKpmSg\u003d\t충청남도 아산시 영인면 신봉길 25\tDeliveryReserved\t기부\nZlpE6NQbv5s1\tCU 아산창용점\t3132012100004\t2020-12-10 09\t충청남도 \tuvbAMHiuYjKpmSg\u003d\t충청남도 아산시 영인면 신봉길 25\tDeliveryReserved\t기부\nZndY6OkOvpsZ\tCU 일원우성점\t3132012100008\t2020-12-10 10\t서울특별시 \tuvbAMH6uYTWrlio\u003d\t서울특별시 강남구 개포로110길 15 (일원동, 일원동우성7차아파트)\tDeliveryReserved\t기부\nZndY6OkOvpsZ\tCU 개포루체하임점\t3132012100009\t2020-12-10 10\t서울특별시 \tuvbAMH6uYTWrlio\u003d\t서울특별시 강남구 개포로110길 15 (일원동, 일원동우성7차아파트)\tDeliveryReserved\t기부\nYH5w7+YnvoAV\tCU 기흥더샵점\t3132012100010\t2020-12-10 10\t경기도 \tuvbAMX+pZzCqki4\u003d\t경기도 용인시 기흥구 기흥역로58번길 78 (구갈동, 기흥역 더샵)\tDeliveryReserved\t기부\nYH5w7+YnvoAV\tCU 기흥더샵점\t3132012100011\t2020-12-10 10\t경기도 \tuvbAMX+pZzCqki4\u003d\t경기도 용인시 기흥구 기흥역로58번길 78 (구갈동, 기흥역 더샵)\tDeliveryReserved\t기부\nZlpE6NE+voI5\tCU 신철원점\t3132012100023\t2020-12-10 13\t강원도 \tuvbANn2tZjeplSI\u003d\t강원도 철원군 갈말읍 삼부연로 29\tDeliveryReserved\t기부\nZlpE6NE+voI5\tCU 신철원점\t3132012100024\t2020-12-10 13\t강원도 \tuvbANn2tZjeplSI\u003d\t강원도 철원군 갈말읍 삼부연로 29\tDeliveryReserved\t기부\nZlpE6NE+voI5\tCU 신철원점\t3132012100025\t2020-12-10 13\t강원도 \tuvbANn2tZjeplSI\u003d\t강원도 철원군 갈말읍 삼부연로 29\tDeliveryReserved\t기부\nZlpE6NQbv54F\tCU 수지주공점\t3132012110002\t2020-12-11 06\t경기도 \tuvbAMHiiYDWolCs\u003d\t경기도 용인시 수지구 풍덕천로 91 (풍덕천동, 용인수지 신정마을1단지)\tDeliveryReserved\t기부\nZlpE6NQbv54F\tCU 수지주공점\t3132012110003\t2020-12-11 06\t경기도 \tuvbAMHiiYDWolCs\u003d\t경기도 용인시 수지구 풍덕천로 91 (풍덕천동, 용인수지 신정마을1단지)\tDeliveryReserved\t기부\nZlpE6NQbv54F\tCU 수지주공점\t3132012110004\t2020-12-11 07\t경기도 \tuvbAMHiiYDWolCs\u003d\t경기도 용인시 수지구 풍덕천로 91 (풍덕천동, 용인수지 신정마을1단지)\tDeliveryReserved\t기부\nYH5w6NU/vpMd\tCU 불로캉가루점\t3132012110006\t2020-12-11 11\t인천광역시 \tuvbAMX2taz6glig\u003d\t인천광역시 계양구 마장로559번길 20-30 (효성동, 동흥빌라)\tDeliveryReserved\t기부\nYH5w6NU/vpMd\tCU 불로캉가루점\t3132012110007\t2020-12-11 11\t인천광역시 \tuvbAMX2taz6glig\u003d\t인천광역시 계양구 마장로559번길 20-30 (효성동, 동흥빌라)\tDeliveryReserved\t기부\nZlpE6NMruakh\tCU 대림희망점\t3132012110012\t2020-12-11 12\t서울특별시 \tuvbAPXytajOvliM\u003d\t서울특별시 영등포구 디지털로38길 18-3 (대림동)\tDeliveryReserved\t기부\nZlpE6NMruakh\tCU 대림희망점\t3132012110016\t2020-12-11 13\t서울특별시 \tuvbAPXytajOvliM\u003d\t서울특별시 영등포구 디지털로38길 18-3 (대림동)\tDeliveryReserved\t기부\nYXdl6NU7v58B\tCU 율하엘크루점\t3132012110032\t2020-12-11 22\t대구광역시 \tuvbANnqqZTSplCg\u003d\t대구광역시 동구 반야월로 26 (용계동, 용계보라아파트)\tDeliveryReserved\t기부\nYXdl6NU7v58B\tCU 율하엘크루점\t3132012110033\t2020-12-11 22\t대구광역시 \tuvbANnqqZTSplCg\u003d\t대구광역시 동구 반야월로 26 (용계동, 용계보라아파트)\tDeliveryReserved\t기부\nZlpE6dMzuLQk\tCU 서대문대현점\t3132012110035\t2020-12-11 22\t서울특별시 \tuvbAM3iqYTSplCw\u003d\t서울특별시 서대문구 이화여대1길 25 (대현동)\tDeliveryReserved\t기부\nZlpE6dMzuLQk\tCU 이대푸르지오점\t3132012110036\t2020-12-11 23\t서울특별시 \tuvbAM3iqYTSplCw\u003d\t서울특별시 서대문구 이화여대1길 25 (대현동)\tDeliveryReserved\t기부\nYXdl6Pgfuakl\tCU 사당남현점\t3132012130001\t2020-12-13 00\t서울특별시 \tuvbAMnyvZDeqkyw\u003d\t서울특별시 관악구 승방3길 2 (남현동)\tDeliveryReserved\t기부\nZlpE6dMzuLQk\tCU 이대역점\t3132012130004\t2020-12-13 10\t서울특별시 \tuvbAM3iqYTSplCw\u003d\t서울특별시 서대문구 이화여대1길 25 (대현동)\tDeliveryReserved\t기부\nZlpE6Nc3vpo9\tCU 광교프라임점\t3132012130012\t2020-12-13 14\t경기도 \tuvbAPHCpZjGpkS8\u003d\t경기도 수원시 영통구 대학3로4번길 36 (이의동)\tDeliveryReserved\t기부\nZlpE6Nc3vpo9\tCU 광교프라임점\t3132012130017\t2020-12-13 15\t경기도 \tuvbAPHCpZjGpkS8\u003d\t경기도 수원시 영통구 대학3로4번길 36 (이의동)\tDeliveryReserved\t기부\nYXdl6Pgfuakl\tCU 관악남현점\t3132012130018\t2020-12-13 16\t서울특별시 \tuvbAMnyvZDeqkyw\u003d\t서울특별시 관악구 승방3길 2 (남현동)\tDeliveryReserved\t기부\nZlpE6MMiv5s1\tCU 대명빌리지점\t3132012130030\t2020-12-13 21\t대구광역시 \tuvbANnuuYzatkik\u003d\t대구광역시 남구 안지랑로21길 68 (대명동)\tDeliveryReserved\t기부\nZlpE6MMiv5s1\tCU 대명빌리지점\t3132012130032\t2020-12-13 21\t대구광역시 \tuvbANnuuYzatkik\u003d\t대구광역시 남구 안지랑로21길 68 (대명동)\tDeliveryReserved\t기부\nZltQ6dwHv54FTb3fq5LL\tCU 계동현대점\t3132012140006\t2020-12-14 09\t서울특별시 \tuvbANnGpZzSpkSk\u003d\t서울특별시 중구 소공로 34 (회현동2가)\tDeliveryReservedCancel\t기부\nZltQ6dwHv54FTb3fq5LL\tCU HD재동주유소점\t3132012140007\t2020-12-14 09\t서울특별시 \tuvbANnGpZzSpkSk\u003d\t서울특별시 중구 소공로 34 (회현동2가)\tDeliveryReservedCancel\t기부\nZltQ6dwHv54FTb3fq5LL\tCU HD재동주유소점\t3132012140010\t2020-12-14 10\t서울특별시 \tuvbANnGpZzSpkSk\u003d\t서울특별시 중구 소공로 34 (회현동2가)\tDeliveryReservedCancel\t기부\nZltQ6dwHv54FTb3fq5LL\tCU 계동현대점\t3132012140011\t2020-12-14 10\t서울특별시 \tuvbANnGpZzSpkSk\u003d\t서울특별시 중구 소공로 34 (회현동2가)\tDeliveryReserved\t기부\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1606436268090_-119627263",
+      "id": "paragraph_1606436268090_-119627263",
+      "dateCreated": "2020-11-27 00:17:48.090",
+      "dateStarted": "2020-12-14 01:47:58.111",
+      "dateFinished": "2020-12-14 01:47:58.132",
+      "status": "FINISHED"
+    },
+    {
+      "text": "select * from members \nwhere nick_name like \u0027Ra%\u0027\norder by created_at desc\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-12-08 11:30:59.925",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "kakao_id": "string",
+                      "nick_name": "string",
+                      "profile_image": "string",
+                      "email": "string",
+                      "created_at": "string",
+                      "updated_at": "string",
+                      "name": "string",
+                      "address": "string",
+                      "address_detail": "string",
+                      "mobile": "string",
+                      "post_no": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "id\tkakao_id\tnick_name\tprofile_image\temail\tcreated_at\tupdated_at\tname\taddress\taddress_detail\tmobile\tpost_no\n900\t1555526424\tRa\thttp://k.kakaocdn.net/dn/3JAvp/btqN6Tr18wL/ZnMzB2dLg94tBOWT2bXrL1/img_640x640.jpg\t\t2020-12-08 18:06:24.0\t2020-12-08 18:13:19.0\t조아라\t서울특별시 영등포구 가마산로 426 (신길동, 신길센트럴아이파크)\t105동103호\t01088919407\t07394\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1606646546811_458694843",
+      "id": "paragraph_1606646546811_458694843",
+      "dateCreated": "2020-11-29 10:42:26.811",
+      "dateStarted": "2020-12-08 11:30:59.927",
+      "dateFinished": "2020-12-08 11:30:59.933",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%donate\n/*\nselect date(updated_at) as uDD, substr(delivery_departure_address,1,instr(delivery_departure_address,\u0027 \u0027)+3) as 보내는곳, delivery_destination as 받는곳,\n    case\n        when status \u003d \u0027DeliveryReservedCancel\u0027 then \u0027취소\u0027\n        when status \u003d \u0027DeliveryReserved\u0027 then \u0027신청\u0027\n        when status \u003d \u0027DonationCompleted\u0027 then \u0027도착\u0027\n        when status \u003d \u0027DonationClassification\u0027 then \u0027선별\u0027\n        else \u0027无\u0027\n    end as iStatus\nfrom donations\nwhere date(updated_at) \u003e \u00272021-01-10\u0027\n    and donor_mobile NOT in (\n            \u0027uvbANnmpZzKhlCw\u003d\u0027,\u0027uvbAMnuuZjOgkis\u003d\u0027,\u0027uvbANnGpZzSpkSk\u003d\u0027,\u0027uvbAPHGiaj6tkSk\u003d\u0027,\u0027uvbAMnqiazGglig\u003d\u0027,\n\u0027uvbAMHivYT+gkCs\u003d\u0027,\u0027uvbANXmrZjepkS4\u003d\u0027,\u0027uvbAM3qpZzaqkS0\u003d\u0027,\u0027uvbAPXmvaj+slig\u003d\u0027,\u0027uvbAN3mrYjGrlyo\u003d\u0027,\n\u0027uvbAM32rYzehkS4\u003d\u0027,\u0027uvbAMHuoYjCrkC0\u003d\u0027,\u0027uvbANnuuazSqkyo\u003d\u0027,\u0027uvbAN3ijZDComSo\u003d\u0027,\u0027uvbAMHirYTOgki4\u003d\u0027,\n\u0027uvbAPXiqYjCqkCk\u003d\u0027,\u0027uvbANnmqaj6hmS0\u003d\u0027,\u0027uvbAPXCrZDKrmSM\u003d\u0027,\u0027uvbAMHiuajegkSk\u003d\u0027,\u0027uvbANn+pazWqlCg\u003d\u0027,\n\u0027uvbAMHijYTGtlSs\u003d\u0027,\u0027uvbANnquazatkyM\u003d\u0027,\u0027uvbAPX6uZz6ukCg\u003d\u0027,\u0027uvbAM32uYTerkys\u003d\u0027,\u0027uvbANnquYDCslCw\u003d\u0027,\n\u0027uvbANn+sYzCqkSk\u003d\u0027,\u0027uvbAMHusZzOqkys\u003d\u0027,\u0027uvbAMHCoYj6vkyI\u003d\u0027\n        )\n    and delivery_destination not in (\u0027아름다운가게 2층 기증\u0027,\u0027안국점2층\u0027)\norder by uDD,받는곳\n*/\nselect     \n    case\n        when status \u003d \u0027DeliveryReservedCancel\u0027 then \u0027취소\u0027\n        when status \u003d \u0027DeliveryReserved\u0027 then \u0027신청\u0027\n        when status \u003d \u0027DonationCompleted\u0027 then \u0027도착\u0027\n        when status \u003d \u0027DonationClassification\u0027 then \u0027선별\u0027\n        else \u0027无\u0027\n    end as iStatus, concat(substr(donor_post_no,1,2),\u0027000\u0027) as postNo, substr(delivery_departure_address,1,instr(delivery_departure_address,\u0027 \u0027)) as 발송처 \n    from donations\nwhere donor_address like \u0027${지역\u003d전라북도,%(전국)|강원도|전라북도|전라남도|광주광역시}%\u0027\n    and substr(delivery_departure_address,1,instr(delivery_departure_address,\u0027 \u0027)) in (\u0027강원\u0027,\u0027전북\u0027,\u0027전남\u0027,\u0027광주\u0027)\n",
+      "user": "admin",
+      "dateUpdated": "2021-01-26 15:28:02.886",
+      "progress": 0,
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "status": "string",
+                      "invoice_no": "string",
+                      "delivery_reservation_no": "string",
+                      "delivery_departure": "string",
+                      "delivery_departure_address": "string",
+                      "delivery_destination": "string",
+                      "delivery_destination_address": "string",
+                      "item_category_id": "string",
+                      "created_by": "string",
+                      "created_at": "string",
+                      "updated_by": "string",
+                      "updated_at": "string",
+                      "confirmed_by": "string",
+                      "confirmed_at": "string",
+                      "donor_name": "string",
+                      "donor_address": "string",
+                      "donor_address_detail": "string",
+                      "donor_mobile": "string",
+                      "donor_post_no": "string",
+                      "delivery_destination_post_no": "string",
+                      "agree": "string",
+                      "event_id": "string",
+                      "event_name": "string",
+                      "is_encrypt": "string",
+                      "restoration_places_id": "string",
+                      "restoration_places_tel_no": "string",
+                      "delivery_destination_address_detail": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "stacked": true
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "발송처",
+                  "index": 2.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [
+                {
+                  "name": "iStatus",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "postNo",
+                  "index": 1.0,
+                  "aggr": "count"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "runOnSelectionChange": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {
+          "지역": "%"
+        },
+        "forms": {
+          "지역": {
+            "type": "Select",
+            "options": [
+              {
+                "value": "%",
+                "displayName": "전국"
+              },
+              {
+                "value": "강원도"
+              },
+              {
+                "value": "전라북도"
+              },
+              {
+                "value": "전라남도"
+              },
+              {
+                "value": "광주광역시"
+              }
+            ],
+            "name": "지역",
+            "displayName": "지역",
+            "defaultValue": "전라북도",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "iStatus\tpostNo\t발송처\n도착\t25000\t강원 \n도착\t58000\t전남 \n도착\t62000\t광주 \n신청\t25000\t강원 \n도착\t62000\t광주 \n신청\t61000\t광주 \n신청\t25000\t강원 \n신청\t54000\t전북 \n신청\t25000\t강원 \n신청\t62000\t광주 \n신청\t26000\t강원 \n신청\t25000\t강원 \n도착\t54000\t전북 \n신청\t25000\t강원 \n도착\t62000\t광주 \n신청\t61000\t광주 \n도착\t61000\t광주 \n신청\t59000\t전남 \n취소\t61000\t광주 \n신청\t26000\t강원 \n도착\t24000\t강원 \n도착\t24000\t강원 \n도착\t24000\t강원 \n도착\t25000\t강원 \n도착\t62000\t광주 \n신청\t24000\t강원 \n신청\t61000\t광주 \n신청\t61000\t광주 \n신청\t61000\t광주 \n취소\t24000\t강원 \n도착\t58000\t전남 \n도착\t61000\t광주 \n도착\t25000\t강원 \n도착\t25000\t강원 \n신청\t58000\t전남 \n도착\t25000\t강원 \n도착\t25000\t강원 \n도착\t24000\t강원 \n도착\t26000\t강원 \n신청\t61000\t광주 \n도착\t61000\t광주 \n신청\t25000\t강원 \n도착\t26000\t강원 \n도착\t26000\t강원 \n신청\t56000\t전북 \n신청\t25000\t강원 \n신청\t61000\t광주 \n신청\t24000\t강원 \n취소\t26000\t강원 \n취소\t24000\t강원 \n신청\t24000\t강원 \n취소\t24000\t강원 \n신청\t55000\t전북 \n취소\t25000\t강원 \n도착\t26000\t강원 \n도착\t24000\t강원 \n취소\t61000\t광주 \n도착\t54000\t전북 \n취소\t54000\t전북 \n신청\t25000\t강원 \n도착\t55000\t전북 \n도착\t55000\t전북 \n신청\t55000\t전북 \n신청\t58000\t전남 \n신청\t56000\t전북 \n도착\t25000\t강원 \n취소\t55000\t전북 \n신청\t24000\t강원 \n신청\t24000\t강원 \n도착\t24000\t강원 \n도착\t61000\t광주 \n취소\t26000\t강원 \n취소\t58000\t전남 \n신청\t61000\t광주 \n도착\t26000\t강원 \n신청\t61000\t광주 \n취소\t25000\t강원 \n취소\t25000\t강원 \n신청\t26000\t강원 \n신청\t26000\t강원 \n도착\t26000\t강원 \n취소\t61000\t광주 \n신청\t25000\t강원 \n도착\t25000\t강원 \n신청\t57000\t전남 \n신청\t54000\t전북 \n신청\t26000\t강원 \n신청\t25000\t강원 \n신청\t24000\t강원 \n신청\t25000\t강원 \n취소\t61000\t광주 \n신청\t61000\t광주 \n취소\t61000\t광주 \n신청\t59000\t전남 \n신청\t25000\t강원 \n신청\t55000\t전북 \n신청\t62000\t광주 \n신청\t25000\t강원 \n신청\t26000\t강원 \n취소\t59000\t전남 \n취소\t61000\t광주 \n도착\t61000\t광주 \n도착\t61000\t광주 \n신청\t57000\t전남 \n도착\t61000\t광주 \n신청\t61000\t광주 \n신청\t54000\t전북 \n취소\t24000\t강원 \n신청\t55000\t전북 \n신청\t24000\t강원 \n신청\t24000\t강원 \n신청\t61000\t광주 \n신청\t61000\t광주 \n신청\t54000\t전북 \n취소\t61000\t광주 \n취소\t62000\t광주 \n취소\t62000\t광주 \n신청\t61000\t광주 \n취소\t61000\t광주 \n취소\t62000\t광주 \n신청\t25000\t강원 \n취소\t62000\t광주 \n신청\t62000\t광주 \n신청\t25000\t강원 \n신청\t25000\t강원 \n취소\t61000\t광주 \n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1606646658204_833182018",
+      "id": "paragraph_1606646658204_833182018",
+      "dateCreated": "2020-11-29 10:44:18.204",
+      "dateStarted": "2021-01-26 15:28:02.889",
+      "dateFinished": "2021-01-26 15:28:02.902",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%donate \nselect     donor_address,\n    case\n        when status \u003d \u0027DeliveryReservedCancel\u0027 then \u0027취소\u0027\n        when status \u003d \u0027DeliveryReserved\u0027 then \u0027신청\u0027\n        when status \u003d \u0027DonationCompleted\u0027 then \u0027도착\u0027\n        when status \u003d \u0027DonationClassification\u0027 then \u0027선별\u0027\n        else \u0027无\u0027\n    end as iStatus, concat(substr(donor_post_no,1,2),\u0027000\u0027) as postNo, substr(delivery_departure_address,1,instr(delivery_departure_address,\u0027 \u0027)) as 발송처 \n    from donations\nwhere donor_address like \u0027${보여지는것\u003d값}%\u0027\n",
+      "user": "admin",
+      "dateUpdated": "2021-01-26 15:24:29.777",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "donor_address": "string",
+                      "iStatus": "string",
+                      "postNo": "string",
+                      "발송처": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {
+          "보여지는것": "값"
+        },
+        "forms": {
+          "보여지는것": {
+            "type": "TextBox",
+            "name": "보여지는것",
+            "displayName": "보여지는것",
+            "defaultValue": "값",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "donor_address\tiStatus\tpostNo\t발송처\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1611630187977_181073461",
+      "id": "paragraph_1611630187977_181073461",
+      "dateCreated": "2021-01-26 12:03:07.977",
+      "dateStarted": "2021-01-26 15:24:29.779",
+      "dateFinished": "2021-01-26 15:24:29.787",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%donate\n",
+      "user": "admin",
+      "dateUpdated": "2021-01-26 15:20:22.423",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1611642022423_268205450",
+      "id": "paragraph_1611642022423_268205450",
+      "dateCreated": "2021-01-26 15:20:22.423",
+      "status": "READY"
+    }
+  ],
+  "name": "참여기록 검색",
+  "id": "2FS9HUMKB",
+  "defaultInterpreterGroup": "fast-donation",
+  "version": "0.9.0-preview1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
