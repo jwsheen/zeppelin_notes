@@ -1,0 +1,184 @@
+{
+  "paragraphs": [
+    {
+      "title": "물품기부자 명단",
+      "text": "select c.updated_at as 도착일, m.name as 성명, m.mobile as 연락처, \n    case\n        when c.item_category_id \u003d 1 then \u0027의류\u0027\n        when c.item_category_id \u003d 2 then \u0027잡화\u0027\n        when c.item_category_id \u003d 3 then \u0027도서음반\u0027\n        when c.item_category_id \u003d 4 then \u0027가전\u0027\n        else \u0027UFO\u0027\n    end as  기부품목,\n    c.quantity as 수량\nfrom  donations d, members m , donation_classifications c\nwhere 1 \u003d 1\nand d.id \u003d c.donation_id\nand d.donor_mobile \u003d m.mobile\nand d.status \u003d \u0027DonationCompleted\u0027\nand d.donor_mobile NOT in (\n        \u002701020254856\u0027,\u002701062545931\u0027,\u002701028252003\u0027,\u002701088988403\u0027,\u002701063997972\u0027,\n        \u002701041439911\u0027,\u002701010041004\u0027,\u002701073250307\u0027,\u002701090489572\u0027,\u002701030007260\u0027,\n        \u002701074011804\u0027,\u002701042306217\u0027,\u002701022592320\u0027,\u002701031866180\u0027,\u002701041035934\u0027,\n        \u002701091106313\u0027,\u002701020188887\u0027,\u002701099064289\u0027,\u002701041581903\u0027,\n        \u002701026293352\u0027,\u002701041837441\u0027,\u002701023590429\u0027,\u002701097558712\u0027,\u002701074531221\u0027,\n        \u002701023526556\u0027,\n        \u002701026716303\u0027,\n        \u002701042755321\u0027\n    )\nand d.donor_mobile like \u0027${Mobile\u003d}%\u0027",
+      "user": "admin",
+      "dateUpdated": "2020-12-21 14:46:42.827",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "도착일": "string",
+                      "성명": "string",
+                      "연락처": "string",
+                      "기부품목": "string",
+                      "수량": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "title": true,
+        "editorHide": true,
+        "lineNumbers": true
+      },
+      "settings": {
+        "params": {
+          "Mobile": ""
+        },
+        "forms": {
+          "Mobile": {
+            "type": "TextBox",
+            "name": "Mobile",
+            "defaultValue": "",
+            "hidden": false
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "도착일\t성명\t연락처\t기부품목\t수량\n2020-11-17 10:49:02.0\tYHRQ7v4bvpEl\tuvbAMnqiazGglig\u003d\t도서음반\t10\n2020-11-17 10:49:02.0\tYHRQ7v4bvpEl\tuvbAMnqiazGglig\u003d\t잡화\t20\n2020-11-17 10:59:02.0\tYHRQ7v4bvpEl\tuvbAMnqiazGglig\u003d\t잡화\t3\n2020-11-17 10:59:20.0\tZltQ6dwHv54FTb3fq5LL\tuvbANnGpZzSpkSk\u003d\t의류\t4\n2020-12-15 11:55:32.0\tYH5w6Oonv58B\tuvbAPHGiaj6tkSk\u003d\t잡화\t1\n2020-12-15 11:55:32.0\tYH5w6Oonv58B\tuvbAPHGiaj6tkSk\u003d\t잡화\t1\n2020-12-07 15:00:31.0\tYHRQ7v4bvpEl\tuvbAMnqiazGglig\u003d\t도서음반\t1\n2020-11-19 16:53:05.0\tZkFR6dMzvqYM\tuvbANnmuaz+sliI\u003d\t의류\t6\n2020-11-19 16:53:05.0\tZkFR6dMzvqYM\tuvbANnmuaz+sliI\u003d\t잡화\t1\n2020-11-20 10:24:31.0\tZltQ6dwHv54FTb3fq5LL\tuvbANnGpZzSpkSk\u003d\t의류\t3\n2020-11-24 09:37:44.0\tZkxQ6M0juYI9TaPv\tuvbANnmpZzKhlCw\u003d\t의류\t3\n2020-11-20 17:00:17.0\tZlpE6OkOv54h\tuvbAMXupYTGsly8\u003d\t의류\t3\n2020-12-07 11:00:19.0\tZltQ6dwHv54FTb3fq5LL\tuvbANnGpZzSpkSk\u003d\t잡화\t1\n2020-11-23 17:11:21.0\tYHdl78QOv58BgQ\u003d\u003d\tuvbAMn6uZjaqkyM\u003d\t의류\t5\n2020-11-23 17:16:16.0\tYXdl78sDvpo9\tuvbAPX+oYDChmS8\u003d\t의류\t8\n2020-11-23 17:16:16.0\tYXdl78sDvpo9\tuvbAPX+oYDChmS8\u003d\t잡화\t2\n2020-11-23 17:16:59.0\tYH5w6dQ3vpsh\tuvbANn2iZjKplSw\u003d\t의류\t8\n2020-11-23 17:16:59.0\tYH5w6dQ3vpsh\tuvbANn2iZjKplSw\u003d\t잡화\t1\n2020-11-23 17:17:47.0\tZllV6dwvuaA1\tuvbAMnyoYDGglio\u003d\t의류\t11\n2020-11-23 17:22:35.0\tYHdl7vkbuZgV\tuvbAN3miYDeskyg\u003d\t잡화\t6\n2020-11-23 17:28:00.0\tYH5w6NILuLEl\tuvbAN32uZjGskis\u003d\t의류\t14\n2020-11-24 10:05:08.0\tYH5w6Pk3vpwp\tuvbAPXutYT+vkC8\u003d\t의류\t1\n2020-11-24 10:05:08.0\tYH5w6Pk3vpwp\tuvbAPXutYT+vkC8\u003d\t잡화\t6\n2020-11-24 15:30:42.0\tZkxQ7vkbvp4Y\tuvbAM3yrZTWrkig\u003d\t의류\t45\n2020-11-24 15:30:08.0\tZkxQ7vkbvp4Y\tuvbAM3yrZTWrkig\u003d\t잡화\t5\n2020-11-24 15:30:08.0\tZkxQ7vkbvp4Y\tuvbAM3yrZTWrkig\u003d\t의류\t28\n2020-11-24 15:30:42.0\tZkxQ7vkbvp4Y\tuvbAM3yrZTWrkig\u003d\t잡화\t8\n2020-11-26 09:36:51.0\tZ1Js6dEfvqYM\tuvbAPXusYDCrlCs\u003d\t잡화\t19\n2020-11-25 15:11:55.0\tZnJs7vkOv54h\tuvbAPXCtYDepkCM\u003d\t의류\t2\n2020-11-25 15:13:00.0\tZkxQ6M0Hvp4Y\tuvbAPXqrZzCtliw\u003d\t의류\t7\n2020-11-25 15:13:33.0\tYH5w7+YnvqEd\tuvbAPH+uZjahkCM\u003d\t의류\t10\n2020-11-25 15:14:58.0\tYHdl78I/vp4Y\tuvbAMXurYTevly4\u003d\t의류\t3\n2020-11-25 15:14:58.0\tYHdl78I/vp4Y\tuvbAMXurYTevly4\u003d\t잡화\t1\n2020-11-25 15:15:24.0\tYHdl78I/vp4Y\tuvbAMXurYTevly4\u003d\t의류\t2\n2020-11-25 15:16:14.0\tYXdl6M0juaA1\tuvbAPH6jZzSskSM\u003d\t의류\t1\n2020-11-26 09:00:02.0\tZnJs6O4fv5MB\tuvbAM3qrZT+rmSg\u003d\t의류\t5\n2020-11-26 09:00:02.0\tZnJs6O4fv5MB\tuvbAM3qrZT+rmSg\u003d\t잡화\t11\n2020-11-26 15:02:49.0\tYH5w6NETvqEd\tuvbAN36jYTavkyw\u003d\t의류\t11\n2020-11-26 15:02:49.0\tYH5w6NETvqEd\tuvbAN36jYTavkyw\u003d\t잡화\t3\n2020-11-26 09:03:16.0\tYWJo6dUDuLEl\tuvbAN36oZzehmCg\u003d\t의류\t6\n2020-11-26 09:03:16.0\tYWJo6dUDuLEl\tuvbAN36oZzehmCg\u003d\t잡화\t4\n2020-11-26 09:04:10.0\tYXdl6O4fvpMd\tuvbAN3ytZjSrmS0\u003d\t의류\t15\n2020-11-26 09:04:39.0\tZmd06dITvoIh\tuvbAPXyiYj+rkSI\u003d\t의류\t7\n2020-11-26 09:21:35.0\tYXRw6dEHvqIZ\tuvbAN3mpYTehkCM\u003d\t의류\t4\n2020-11-26 09:33:12.0\tYH5w6dEOuL4p\tuvbAN3+tajWglyg\u003d\t의류\t16\n2020-11-26 09:34:49.0\tZ1Js6dEfvqYM\tuvbAPXusYDCrlCs\u003d\t의류\t14\n2020-11-26 09:34:49.0\tZ1Js6dEfvqYM\tuvbAPXusYDCrlCs\u003d\t잡화\t3\n2020-11-26 09:39:52.0\tZl9U6OkOuakl\tuvbAMHuoYT+rly8\u003d\t의류\t3\n2020-11-26 09:39:52.0\tZl9U6OkOuakl\tuvbAMHuoYT+rly8\u003d\t도서음반\t2\n2020-11-26 09:39:52.0\tZl9U6OkOuakl\tuvbAMHuoYT+rly8\u003d\t잡화\t1\n2020-11-26 09:41:01.0\tZnJs6O4fv5MB\tuvbAM3qrZT+rmSg\u003d\t의류\t4\n2020-11-26 09:41:26.0\tYHdl78I/vp4Y\tuvbAMXurYTevly4\u003d\t의류\t7\n2020-11-26 17:16:45.0\t3Ya+Q2nBG1Hc6A\u003d\u003d\tuvbANn6tajaqliI\u003d\t의류\t4\n2020-11-26 17:16:45.0\t3Ya+Q2nBG1Hc6A\u003d\u003d\tuvbANn6tajaqliI\u003d\t잡화\t2\n2020-11-26 17:16:45.0\t3Ya+Q2nBG1Hc6A\u003d\u003d\tuvbANn6tajaqliI\u003d\t가전\t1\n2020-11-26 17:16:20.0\tZllV6dEHvp4Y\tuvbAPHyrYjCvkS8\u003d\t의류\t5\n2020-11-30 17:31:16.0\tZkxQ6M07v5s1\tuvbAN3qpZD6rkC8\u003d\t의류\t8\n2020-11-30 17:32:04.0\tZkNs78I/vp4Y\tuvbAM32vZjSvmC4\u003d\t잡화\t5\n2020-11-30 17:32:04.0\tZkNs78I/vp4Y\tuvbAM32vZjSvmC4\u003d\t의류\t3\n2020-11-30 17:32:33.0\tZlpE6M0HvqEd\tuvbAN3uoYDOskyg\u003d\t의류\t34\n2020-11-30 17:34:48.0\tZltU6M8P\tuvbAPXuqYDehlyk\u003d\t의류\t8\n2020-11-30 17:35:33.0\tZmd06O4bvp0J\tuvbAPXyoazKgkS8\u003d\t잡화\t15\n2020-11-30 17:35:43.0\tZmd06O4bvp0J\tuvbAPXyoazKgkS8\u003d\t잡화\t12\n2020-11-30 17:36:22.0\tYXdl6O4bvpo9\tuvbAN3+iYj+rkSM\u003d\t의류\t12\n2020-11-30 17:37:15.0\tYH5w6NQbv54F\tuvbANnGqYj+oliM\u003d\t의류\t3\n2020-11-30 17:37:46.0\tYH5w7vsmv5s1\tuvbAMnqqZDeglS8\u003d\t잡화\t38\n2020-11-30 17:38:22.0\tYWJo6O4bv54d\tuvbAPXypYDeokSw\u003d\t의류\t10\n2020-11-30 17:38:22.0\tYWJo6O4bv54d\tuvbAPXypYDeokSw\u003d\t잡화\t16\n2020-11-30 17:38:48.0\tYH5w6O4bvpsZ\tuvbAN36vZT6tlCw\u003d\t의류\t6\n2020-11-30 17:39:14.0\tYH5w6O4bv54d\tuvbAM36qZjOukS4\u003d\t잡화\t8\n2020-11-30 17:39:47.0\tZmZA6NQbvqEZ\tuvbAN3yuYjStmC8\u003d\t의류\t3\n2020-11-30 17:39:47.0\tZmZA6NQbvqEZ\tuvbAN3yuYjStmC8\u003d\t잡화\t3\n2020-11-30 17:40:42.0\tZmZA6NQbvqEZ\tuvbAN3yuYjStmC8\u003d\t의류\t13\n2020-11-30 17:40:42.0\tZmZA6NQbvqEZ\tuvbAN3yuYjStmC8\u003d\t잡화\t6\n2020-11-30 17:41:48.0\tYXdA7+Yjvp4Y\tuvbAMnuuZTKrkSM\u003d\t잡화\t2\n2020-11-30 17:41:48.0\tYXdA7+Yjvp4Y\tuvbAMnuuZTKrkSM\u003d\t도서음반\t1\n2020-11-30 17:42:20.0\tYH5w6O4bvo4B\tuvbAMHivZzaokis\u003d\t의류\t14\n2020-11-30 17:42:44.0\tZlpE6dEf\tuvbAPX2uYzKvkS8\u003d\t의류\t4\n2020-11-30 17:43:10.0\tYHdl6NU7vqEd\tuvbAMX2oZzGrmSw\u003d\t의류\t4\n2020-11-30 17:44:53.0\tZmZA6Nc3v54d\tuvbAMXmqZTegkS4\u003d\t의류\t7\n2020-11-30 17:45:01.0\tZmZA6Nc3v54d\tuvbAMXmqZTegkS4\u003d\t잡화\t1\n2020-11-30 17:45:46.0\tYWFc79oHuLctTZ7/\tuvbAMHGtYjCvlyo\u003d\t의류\t2\n2020-11-30 17:45:46.0\tYWFc79oHuLctTZ7/\tuvbAMHGtYjCvlyo\u003d\t잡화\t9\n2020-12-01 10:09:00.0\tZmBw7vkbv54d\tuvbAMHusZzOqkys\u003d\t의류\t17\n2020-12-01 10:09:26.0\tZmBw7vkbv54d\tuvbAMHusZzOqkys\u003d\t의류\t13\n2020-12-01 10:09:53.0\tZmdl6MEDuLQk\tuvbAMH+tYTWrmSM\u003d\t의류\t5\n2020-12-01 10:10:19.0\tZmdl6MEDuLQk\tuvbAMH+tYTWrmSM\u003d\t의류\t10\n2020-12-01 10:10:19.0\tZmdl6MEDuLQk\tuvbAMH+tYTWrmSM\u003d\t잡화\t1\n2020-12-01 10:12:14.0\tZlpE6NEav58B\tuvbAN3GvZj6rkS0\u003d\t의류\t2\n2020-12-01 10:12:14.0\tZlpE6NEav58B\tuvbAN3GvZj6rkS0\u003d\t잡화\t38\n2020-12-01 10:12:48.0\tZkFR7+YjuLQk\tuvbAPHqvYjaskik\u003d\t도서음반\t2\n2020-12-01 10:12:48.0\tZkFR7+YjuLQk\tuvbAPHqvYjaskik\u003d\t잡화\t1\n2020-12-01 10:13:26.0\tZnVs6NEavpsZ\tuvbAM32jYzGulSI\u003d\t의류\t5\n2020-12-01 10:13:57.0\tYHdl6NU7vqEd\tuvbAMX2oZzGrmSw\u003d\t의류\t30\n2020-12-01 17:12:56.0\tZkFR6dEa\tuvbAM3CsazKpkSs\u003d\t의류\t29\n2020-12-07 10:16:06.0\tZlpE7+MevpsZ\tuvbANn2jZjKglCk\u003d\t의류\t1\n2020-12-07 10:16:06.0\tZlpE7+MevpsZ\tuvbANn2jZjKglCk\u003d\t잡화\t5\n2020-12-07 10:16:06.0\tZlpE7+MevpsZ\tuvbANn2jZjKglCk\u003d\t도서음반\t5\n2020-12-01 17:16:07.0\tZl1Z6NQbv5s1\tuvbAN3uuajeqly4\u003d\t의류\t3\n2020-12-01 17:16:41.0\tZlpE6M0qv54d\tuvbAMHGpZzGokCI\u003d\t의류\t2\n2020-12-01 17:17:11.0\tZkFR6Pgfvp0J\tuvbAN3moYjSgkSk\u003d\t잡화\t2\n2020-12-01 17:20:09.0\tYXdZ6NEavo4F\tuvbAPXmiZDCslCM\u003d\t잡화\t10\n2020-12-01 17:20:09.0\tYXdZ6NEavo4F\tuvbAPXmiZDCslCM\u003d\t의류\t2\n2020-12-01 17:20:26.0\tZmBw6NEauZgZ\tuvbAPX+oYTegkCw\u003d\t도서음반\t8\n2020-12-01 17:21:08.0\tYH5w6dEfvqYM\tuvbAPXGtZDermCk\u003d\t도서음반\t3\n2020-12-02 17:49:20.0\tZkFR6NQbuLQk\tuvbAMH6oYT6olSM\u003d\t잡화\t10\n2020-12-02 17:49:58.0\tZmdl6M07vp4Y\tuvbANnqpYDWrmSk\u003d\t의류\t11\n2020-12-02 17:49:58.0\tZmdl6M07vp4Y\tuvbANnqpYDWrmSk\u003d\t잡화\t1\n2020-12-02 17:50:34.0\tZmdl78YCv54M\tuvbAM3yrYTSqlSg\u003d\t의류\t33\n2020-12-02 17:50:34.0\tZmdl78YCv54M\tuvbAM3yrYTSqlSg\u003d\t잡화\t6\n2020-12-02 17:51:02.0\tYH9I6NETvqEd\tuvbAMn+rYDKoli0\u003d\t의류\t8\n2020-12-02 17:51:30.0\tZlpE6dEfuakl\tuvbAMX+oajagmSg\u003d\t의류\t3\n2020-12-02 17:51:30.0\tZlpE6dEfuakl\tuvbAMX+oajagmSg\u003d\t잡화\t3\n2020-12-02 17:51:52.0\tZnJs78wOvp0J\tuvbAPXCsZjKtlS4\u003d\t의류\t4\n2020-12-02 17:51:52.0\tZnJs78wOvp0J\tuvbAPXCsZjKtlS4\u003d\t잡화\t2\n2020-12-02 17:52:17.0\tZltQ6O4bvp0J\tuvbAMnqqZDShlCg\u003d\t의류\t30\n2020-12-02 17:52:37.0\tZ1596NEavpsZ\tuvbAPXCvZjGqli8\u003d\t의류\t4\n2020-12-02 17:53:05.0\tZmZA6NQbvqEd\tuvbAMXuiajGvlSg\u003d\t의류\t2\n2020-12-02 17:53:33.0\tZmZA6NQbvqEd\tuvbAMXuiajGvlSg\u003d\t의류\t2\n2020-12-02 17:53:54.0\tYXdA6MECvqEd\tuvbAN3Cvaz6rkSM\u003d\t잡화\t23\n2020-12-02 17:54:16.0\tZkxQ78I/v54F\tuvbAMX+rZDatkyk\u003d\t의류\t9\n2020-12-03 17:42:13.0\tZmRM6M8PvqEZ\tuvbANnupajWrlyo\u003d\t의류\t8\n2020-12-03 17:42:49.0\tZlpE6NQXYA\u003d\u003d\tuvbAPHqtajaqky4\u003d\t의류\t18\n2020-12-03 17:43:24.0\tZlpE6NQXYA\u003d\u003d\tuvbAPHqtajaqky4\u003d\t의류\t11\n2020-12-03 17:44:02.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t잡화\t9\n2020-12-03 17:44:02.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t의류\t1\n2020-12-03 17:44:02.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t도서음반\t3\n2020-12-03 17:44:35.0\tZnJs6dEHvp0J\tuvbAPXqoYDGplCs\u003d\t의류\t10\n2020-12-03 17:44:35.0\tZnJs6dEHvp0J\tuvbAPXqoYDGplCs\u003d\t잡화\t3\n2020-12-03 17:45:08.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t잡화\t2\n2020-12-03 17:45:08.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t의류\t19\n2020-12-03 17:45:41.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t의류\t10\n2020-12-03 17:45:41.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t잡화\t4\n2020-12-03 17:45:41.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t도서음반\t1\n2020-12-03 17:46:09.0\tZl1A6dwDvpsZ\tuvbAMnGqYjGrkik\u003d\t잡화\t2\n2020-12-03 17:46:09.0\tZl1A6dwDvpsZ\tuvbAMnGqYjGrkik\u003d\t의류\t3\n2020-12-07 10:03:08.0\tZltQ6dwHv54FTb3fq5LL\tuvbANnGpZzSpkSk\u003d\t의류\t3\n2020-12-07 10:15:20.0\tZltQ6dwHv54FTb3fq5LL\tuvbANnGpZzSpkSk\u003d\t의류\t12\n2020-12-07 10:15:20.0\tZltQ6dwHv54FTb3fq5LL\tuvbANnGpZzSpkSk\u003d\t잡화\t33\n2020-12-07 11:00:19.0\tZltQ6dwHv54FTb3fq5LL\tuvbANnGpZzSpkSk\u003d\t의류\t3\n2020-12-07 12:54:22.0\tYH5w6dEjvoIE\tuvbAPXCqYz+gkS4\u003d\t의류\t3\n2020-12-07 12:54:22.0\tYH5w6dEjvoIE\tuvbAPXCqYz+gkS4\u003d\t잡화\t2\n2020-12-07 12:56:26.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t가전\t1\n2020-12-07 12:56:26.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t가전\t1\n2020-12-07 12:56:26.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t잡화\t6\n2020-12-07 12:56:26.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t잡화\t6\n2020-12-07 12:57:48.0\tZndY6NMruakh\tuvbAPXiuZDOqlCo\u003d\t의류\t7\n2020-12-07 12:59:15.0\tYWtI6NU7vqEd\tuvbAM3qqZTWsmSs\u003d\t의류\t6\n2020-12-07 13:00:18.0\tYUJI6MMivpEp\tuvbAPXmqYTGrmC8\u003d\t잡화\t10\n2020-12-07 13:01:08.0\tYHF86dQ3vp0J\tuvbAMXuoYzCokyw\u003d\t잡화\t16\n2020-12-07 13:10:36.0\tZnJs6MEDvqYM\tuvbAPXqtZDKrkyk\u003d\t의류\t5\n2020-12-07 13:10:36.0\tZnJs6MEDvqYM\tuvbAPXqtZDKrkyk\u003d\t의류\t5\n2020-12-07 13:10:36.0\tZnJs6MEDvqYM\tuvbAPXqtZDKrkyk\u003d\t도서음반\t1\n2020-12-07 13:10:36.0\tZnJs6MEDvqYM\tuvbAPXqtZDKrkyk\u003d\t잡화\t10\n2020-12-07 13:11:53.0\tZmZA6dEHvqEd\tuvbAMXuvajahlys\u003d\t의류\t7\n2020-12-07 13:11:53.0\tZmZA6dEHvqEd\tuvbAMXuvajahlys\u003d\t의류\t7\n2020-12-07 13:12:33.0\tYUVo6NQbvoI5\tuvbAMHyoYDCtlSs\u003d\t의류\t7\n2020-12-07 13:13:24.0\tYH5w6dEjvoIE\tuvbAPXCqYz+gkS4\u003d\t의류\t8\n2020-12-07 13:14:03.0\tYH5w6NEav5s1\tuvbAPX+jYTeokCw\u003d\t의류\t4\n2020-12-07 13:26:01.0\tYH5w6NEavqEZ\tuvbAPX+taz6tlik\u003d\t의류\t2\n2020-12-07 13:26:01.0\tYH5w6NEavqEZ\tuvbAPX+taz6tlik\u003d\t잡화\t5\n2020-12-07 13:26:02.0\tZmd06NQjvpMd\tuvbAMH6vYTeukCs\u003d\t의류\t3\n2020-12-07 13:26:00.0\tYXdl6M0jvpsZ\tuvbAMXypZzavly4\u003d\t의류\t5\n2020-12-07 13:26:01.0\tYWd4JKQQ4iZ0KbZ7pYPD481vOMtRWUMxig\u003d\u003d\tuvbANn6iYzSvmSw\u003d\t의류\t1\n2020-12-07 13:26:01.0\tYWd4JKQQ4iZ0KbZ7pYPD481vOMtRWUMxig\u003d\u003d\tuvbANn6iYzSvmSw\u003d\t잡화\t1\n2020-12-07 15:00:30.0\tYXdA7+YnvqUl\tuvbAPX2qYTSqky8\u003d\t의류\t1\n2020-12-07 15:00:29.0\tZkxQ7vwLvp0J\tuvbANnmpazGgkCo\u003d\t잡화\t3\n2020-12-07 15:00:31.0\tYH5w6NETuaAp\tuvbAM3+oYj6glC0\u003d\t잡화\t5\n2020-12-07 15:00:31.0\tYH5w6NETuaAp\tuvbAM3+oYj6glC0\u003d\t의류\t2\n2020-12-07 15:00:31.0\tYH5w6NETuaAp\tuvbAM3+oYj6glC0\u003d\t가전\t1\n2020-12-07 16:00:20.0\tZkxQ6NU7v54d\tuvbAPXioZD6slCo\u003d\t의류\t10\n2020-12-07 16:00:20.0\tZkxQ6NU7v54d\tuvbAPXioZD6slCo\u003d\t잡화\t4\n2020-12-07 17:28:56.0\tYXdB7v0bvpwp\tuvbAMnysYj6pmSg\u003d\t잡화\t1\n2020-12-07 17:28:56.0\tYXdB7v0bvpwp\tuvbAMnysYj6pmSg\u003d\t의류\t5\n2020-12-07 17:32:36.0\tZkFg6Nc3uakl\tuvbAMH+raj+slCs\u003d\t의류\t2\n2020-12-07 17:32:37.0\tZlpE6M0HvpEp\tuvbAMH+uYD6hkCg\u003d\t잡화\t4\n2020-12-10 09:14:55.0\tYXdl6O4fvpMd\tuvbAN3ytZjSrmS0\u003d\t잡화\t2\n2020-12-10 09:14:57.0\tZlJ46O4fuawc\tuvbAPXmqajCpmCg\u003d\t잡화\t23\n2020-12-10 09:14:56.0\tYXdl6dEfvqYM\tuvbANnmuZzetkik\u003d\t의류\t6\n2020-12-10 09:15:12.0\tZmZA6NQbub8d\tuvbAN3uoazSplyM\u003d\t의류\t15\n2020-12-10 09:15:00.0\tZlpE6O4bvoI5\tuvbAPXGrYTOskSI\u003d\t의류\t20\n2020-12-10 09:15:09.0\tZmdl6dEjvo09\tuvbAM32iYz6hmSs\u003d\t의류\t5\n2020-12-10 09:15:10.0\t3oKjTADJHUHQ6k8WAQ\u003d\u003d\tuvbAM3qsYDChmCo\u003d\t잡화\t17\n2020-12-10 09:15:10.0\t3oKjTADJHUHQ6k8WAQ\u003d\u003d\tuvbAM3qsYDChmCo\u003d\t의류\t1\n2020-12-10 09:14:59.0\tZlJ46O4bvp0J\tuvbAPXqjYjCrkSg\u003d\t의류\t1\n2020-12-10 09:15:11.0\tYUh86Nw/vpMdTYfv\tuvbAPHqvZDWgkio\u003d\t잡화\t15\n2020-12-10 09:14:55.0\tZmdl6dQ3vpo9\tuvbAN3qtZjCqmS0\u003d\t의류\t7\n2020-12-10 09:14:56.0\tZmdl6dQ3vpo9\tuvbAN3qtZjCqmS0\u003d\t의류\t4\n2020-12-10 09:14:56.0\tZmdl6dQ3vpo9\tuvbAN3qtZjCqmS0\u003d\t잡화\t5\n2020-12-10 09:15:00.0\tZlpE6O4bvoI5\tuvbAPXGrYTOskSI\u003d\t의류\t4\n2020-12-10 09:15:10.0\tZmRM6N43v54d\tuvbAPH6oZjSgkCI\u003d\t의류\t2\n2020-12-10 09:15:00.0\tZndY6dQ3vpEp\tuvbAMX2uZjCqky4\u003d\t도서음반\t4\n2020-12-10 09:15:00.0\tZndY6dQ3vpEp\tuvbAMX2uZjCqky4\u003d\t잡화\t15\n2020-12-10 09:14:55.0\tYXdl6O4fvpMd\tuvbAN3ytZjSrmS0\u003d\t잡화\t2\n2020-12-10 09:15:13.0\tZlpE6NEavpgJ\tuvbAPX2jZjWpki8\u003d\t의류\t11\n2020-12-10 09:15:13.0\tZlpE6NEavpgJ\tuvbAPX2jZjWpki8\u003d\t잡화\t5\n2020-12-10 09:14:59.0\tYH5w6MECvqEd\tuvbAMHGpYjSvmSI\u003d\t잡화\t6\n2020-12-10 09:15:12.0\tYH5w6NwfvqEd\tuvbAMHuiYDWqli4\u003d\t잡화\t26\n2020-12-10 09:14:58.0\tYHdl6MEDuakl\tuvbAN32vYTShkS8\u003d\t의류\t15\n2020-12-10 14:59:39.0\tZl9U6MEDvqEd\tuvbAMnqvZD6ulik\u003d\t의류\t15\n2020-12-10 14:59:39.0\tZl9U6MEDvqEd\tuvbAMnqvZD6ulik\u003d\t잡화\t1\n2020-12-10 15:03:30.0\tYHF86O4bvpo9\tuvbAMXiuZzOvmSI\u003d\t의류\t9\n2020-12-10 15:03:30.0\tYHF86O4bvpo9\tuvbAMXiuZzOvmSI\u003d\t잡화\t6\n2020-12-10 15:05:06.0\tZmRM6M07vpMd\tuvbAN3qoYj6vkiM\u003d\t의류\t11\n2020-12-10 15:05:58.0\tYHF86M0juZsl\tuvbAN3qjYT+gkCI\u003d\t의류\t7\n2020-12-10 15:06:25.0\tZmZA6dEHvqEZ\tuvbAPXmiYj6gki4\u003d\t의류\t3\n2020-12-10 15:07:30.0\tYXdl7+YjvoI5\tuvbAMXqqYz6smSM\u003d\t잡화\t2\n2020-12-10 15:07:30.0\tYXdl7+YjvoI5\tuvbAMXqqYz6smSM\u003d\t잡화\t4\n2020-12-10 15:07:30.0\tYXdl7+YjvoI5\tuvbAMXqqYz6smSM\u003d\t도서음반\t2\n2020-12-10 15:08:50.0\tZlpE6MI7vp4Y\tuvbAPXitYjWtliI\u003d\t도서음반\t1\n2020-12-10 15:08:50.0\tZlpE6MI7vp4Y\tuvbAPXitYjWtliI\u003d\t잡화\t29\n2020-12-10 15:09:23.0\tZmZA6dEHvqEZ\tuvbAPXmiYj6gki4\u003d\t의류\t3\n2020-12-10 15:10:10.0\tZkFg6NQbv54F\tuvbAN3usYz6plyM\u003d\t의류\t8\n2020-12-10 15:10:54.0\tYXdl6MEDv54d\tuvbAMXyjZjavmCk\u003d\t잡화\t2\n2020-12-10 15:11:35.0\tZmZA6dEHvqEZ\tuvbAPXmiYj6gki4\u003d\t의류\t20\n2020-12-10 15:12:12.0\tZkNB6Nwfvpo9\tuvbAM3CoYTavli0\u003d\t의류\t4\n2020-12-10 15:14:58.0\tYH5w6O4bv54F\tuvbAM3uuYDeukS8\u003d\t의류\t10\n2020-12-10 15:17:40.0\tYHdl6Oonv54d\tuvbAPXuiYTGvlCo\u003d\t의류\t3\n2020-12-10 15:17:40.0\tYHdl6Oonv54d\tuvbAPXuiYTGvlCo\u003d\t잡화\t1\n2020-12-10 15:18:19.0\tZlpE78YCuLEl\tuvbAMHmrYj6plSs\u003d\t의류\t2\n2020-12-10 15:19:51.0\tYH5w7+YnvoI5\tuvbAPH6tZDapmCI\u003d\t의류\t17\n2020-12-10 15:21:41.0\tYH5w6O4bv54F\tuvbAM3uuYDeukS8\u003d\t의류\t4\n2020-12-10 15:23:31.0\tZlpE6MEDuakl\tuvbAN3qoZTaokiw\u003d\t의류\t6\n2020-12-10 15:23:31.0\tZlpE6MEDuakl\tuvbAN3qoZTaokiw\u003d\t잡화\t2\n2020-12-10 15:24:02.0\tZkFg6NQbv54F\tuvbAN3usYz6plyM\u003d\t의류\t12\n2020-12-10 15:24:57.0\tYXdl6dEHuaAp\tuvbAMHGuZD+slSM\u003d\t의류\t10\n2020-12-10 15:24:57.0\tYXdl6dEHuaAp\tuvbAMHGuZD+slSM\u003d\t잡화\t1\n2020-12-11 14:22:31.0\tZlpE7+Yjv5A8\tuvbAN36pYjGomSM\u003d\t의류\t16\n2020-12-11 14:22:31.0\tZlpE7+Yjv5A8\tuvbAN36pYjGomSM\u003d\t잡화\t4\n2020-12-11 14:22:31.0\tZlpE7+Yjv5A8\tuvbAN36pYjGomSM\u003d\t가전\t1\n2020-12-11 14:22:30.0\tYH5w6O4bv54h\tuvbANn6oZzShlC4\u003d\t의류\t6\n2020-12-11 14:22:30.0\tYH5w6O4bv54h\tuvbANn6oZzShlC4\u003d\t의류\t8\n2020-12-11 14:22:29.0\tYXdl6MEDvqEd\tuvbAPXqiZT+rlyw\u003d\t의류\t4\n2020-12-11 14:22:29.0\tYH5w6O4bv54F\tuvbAMHiiZTCokC0\u003d\t도서음반\t9\n2020-12-11 14:22:31.0\tZll06M07v5s1\tuvbAPX2rYDCskSw\u003d\t의류\t5\n2020-12-11 14:22:28.0\tZmZA6Nc3v54d\tuvbAMXmqZTegkS4\u003d\t의류\t2\n2020-12-11 14:22:28.0\tZmZA6Nc3v54d\tuvbAMXmqZTegkS4\u003d\t잡화\t2\n2020-12-14 12:43:23.0\tYHdl7+Ynvpwp\tuvbAPHqpYDSpmS0\u003d\t의류\t1\n2020-12-14 12:43:23.0\tYHdl7+Ynvpwp\tuvbAPHqpYDSpmS0\u003d\t잡화\t1\n2020-12-14 12:42:56.0\tZlpE6dEHvoI5\tuvbAN32iajeplyo\u003d\t의류\t15\n2020-12-14 12:43:16.0\tYHdl6O4bv54F\tuvbAMX6uYD+tkSs\u003d\t의류\t3\n2020-12-14 12:42:49.0\tZmdl6NQDvqQc\tuvbANn6sYj6slS0\u003d\t의류\t9\n2020-12-14 12:43:02.0\tYH5w7+Ynvp4Y\tuvbAN36iZzKhlSw\u003d\t가전\t1\n2020-12-14 12:43:02.0\tYH5w7+Ynvp4Y\tuvbAN36iZzKhlSw\u003d\t잡화\t3\n2020-12-14 12:43:02.0\tYH5w7+Ynvp4Y\tuvbAN36iZzKhlSw\u003d\t의류\t1\n2020-12-14 12:42:50.0\tZlpE6O4bvpsZ\tuvbAM32qZzGumSs\u003d\t의류\t6\n2020-12-14 12:42:50.0\tZlpE6O4bvpsZ\tuvbAM32qZzGumSs\u003d\t잡화\t1\n2020-12-14 12:42:51.0\tZlpE6NQbv5s1\tuvbAMHiuYjKpmSg\u003d\t잡화\t3\n2020-12-14 12:42:48.0\tYUJI6NEav50R\tuvbAM3urZzWrlC0\u003d\t잡화\t2\n2020-12-14 12:43:24.0\tZmdl6MEDvpsh\tuvbAMHisYzavkS0\u003d\t의류\t2\n2020-12-14 12:42:47.0\tZ1Js6M0jvp48\tuvbAMH6jazGsliw\u003d\t잡화\t1\n2020-12-14 12:42:47.0\tZ1Js6M0jvp48\tuvbAMH6jazGsliw\u003d\t도서음반\t2\n2020-12-14 12:42:58.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t잡화\t6\n2020-12-14 12:42:58.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t도서음반\t2\n2020-12-14 12:43:20.0\tZnJs7+83vpMd\tuvbAM3CoazOgkik\u003d\t의류\t3\n2020-12-14 12:43:20.0\tZnJs7+83vpMd\tuvbAM3CoazOgkik\u003d\t잡화\t2\n2020-12-14 12:42:52.0\tZkxQ6MMivpEpkipspY//\tuvbAPXytZzWhlyo\u003d\t잡화\t8\n2020-12-14 12:42:54.0\tZll06NQbvo4A\tuvbAN3GvajCuly8\u003d\t의류\t22\n2020-12-14 12:42:51.0\tZlpE6NQbv5s1\tuvbAMHiuYjKpmSg\u003d\t의류\t10\n2020-12-14 12:42:53.0\tZll06NQbvo4A\tuvbAN3GvajCuly8\u003d\t의류\t3\n2020-12-14 12:42:53.0\tZll06NQbvo4A\tuvbAN3GvajCuly8\u003d\t잡화\t2\n2020-12-14 12:42:56.0\tZlpE7+YjuLQk\tuvbAMnujazKhki8\u003d\t의류\t8\n2020-12-14 12:43:15.0\tYHdl6O4bv54F\tuvbAMX6uYD+tkSs\u003d\t의류\t3\n2020-12-14 12:43:21.0\tYH5w6M86v54d\tuvbANnmqYjColSM\u003d\t의류\t8\n2020-12-14 12:42:50.0\tZndY6OkOvpsZ\tuvbAMH6uYTWrlio\u003d\t의류\t6\n2020-12-14 12:42:50.0\tZndY6OkOvpsZ\tuvbAMH6uYTWrlio\u003d\t잡화\t6\n2020-12-14 12:42:59.0\tZmdl78I/vpwt\tuvbAPXCiYz6rkSs\u003d\t의류\t2\n2020-12-14 12:42:59.0\tZmdl78I/vpwt\tuvbAPXCiYz6rkSs\u003d\t잡화\t7\n2020-12-14 12:42:57.0\tYXdl6dEHuakl\tuvbAMn6sZTGqlCw\u003d\t의류\t6\n2020-12-14 12:43:20.0\tYXdl7+YnvqYM\tuvbAPHquZz+tlCo\u003d\t의류\t9\n2020-12-14 12:43:25.0\tZlpE6MEDuakl\tuvbAN3qoZTaokiw\u003d\t의류\t6\n2020-12-14 12:43:19.0\tZl9U6M0Hv54d\tuvbAPXGsZj+qlS8\u003d\t의류\t3\n2020-12-14 12:43:17.0\tZlBM6Oonv5s1\tuvbANnuvajCqlys\u003d\t잡화\t4\n2020-12-14 12:43:17.0\tZlBM6Oonv5s1\tuvbANnuvajCqlys\u003d\t도서음반\t10\n2020-12-14 12:51:06.0\tZndY6OkOvpsZ\tuvbAMH6uYTWrlio\u003d\t의류\t4\n2020-12-14 12:51:04.0\tZlpE6NE+voI5\tuvbANn2tZjeplSI\u003d\t가전\t1\n2020-12-14 12:51:05.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t잡화\t6\n2020-12-14 12:51:05.0\tZkF86NQbvqYM\tuvbAPXqqZjCtki8\u003d\t도서음반\t2\n2020-12-14 12:51:03.0\tZlpE6NE+voI5\tuvbANn2tZjeplSI\u003d\t가전\t7\n2020-12-14 12:51:09.0\tZmdl6M8Xvp4R\tuvbAMXmsazGhkyw\u003d\t의류\t6\n2020-12-14 12:51:09.0\tZmdl6M8Xvp4R\tuvbAMXmsazGhkyw\u003d\t잡화\t4\n2020-12-14 12:51:07.0\tZltU6OsevoIE\tuvbAMH+tZjOrkSM\u003d\t의류\t10\n2020-12-14 12:51:07.0\tZltU6OsevoIE\tuvbAMH+tZjOrkSM\u003d\t잡화\t2\n2020-12-14 12:51:02.0\tZlpE6NE+voI5\tuvbANn2tZjeplSI\u003d\t잡화\t9\n2020-12-14 12:51:02.0\tZlpE6NE+voI5\tuvbANn2tZjeplSI\u003d\t도서음반\t9\n2020-12-14 12:51:09.0\tZmZA6NwfuZsl\tuvbAPHGiYz+tkS0\u003d\t의류\t18\n2020-12-14 12:51:11.0\tYXdl6dEHuakl\tuvbAMn6sZTGqlCw\u003d\t의류\t12\n2020-12-14 12:51:12.0\tZlpE6Oonvp4Y\tuvbANnmtZzSokCw\u003d\t의류\t9\n2020-12-15 11:55:26.0\tYXdl6O0bvpst\tuvbAMXGvajOqliw\u003d\t의류\t6\n2020-12-15 11:55:25.0\tZlpE6dEHvoI5\tuvbAN32iajeplyo\u003d\t의류\t8\n2020-12-15 11:55:27.0\tYH5w6NU/vpMd\tuvbAM3yiZzWvlSM\u003d\t의류\t9\n2020-12-15 11:55:24.0\tYH5w6NU/vpMd\tuvbAMX2taz6glig\u003d\t잡화\t5\n2020-12-15 11:55:28.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t의류\t1\n2020-12-15 11:55:28.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t의류\t1\n2020-12-15 11:55:28.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t잡화\t1\n2020-12-15 11:55:28.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t잡화\t1\n2020-12-15 11:55:28.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t가전\t1\n2020-12-15 11:55:28.0\tZlpE6dMzuaYg\tuvbAN3GiZTCvkiM\u003d\t가전\t1\n2020-12-15 11:55:23.0\tZlpE6NMruakh\tuvbAPXytajOvliM\u003d\t의류\t9\n2020-12-15 11:55:22.0\tYXdl6O0bvpst\tuvbAMXGvajOqliw\u003d\t의류\t3\n2020-12-16 12:37:37.0\tYH5w7/sPvo4B\tuvbAMn6qZT6hlik\u003d\t잡화\t6\n2020-12-16 12:37:44.0\tZltU6NMrvoI0\tuvbANnCiZjeqlCo\u003d\t잡화\t75\n2020-12-16 13:09:46.0\tYH5w7vsmvo0E\tuvbAPHyiZzSulyw\u003d\t의류\t6\n2020-12-16 13:10:05.0\tZlpE7v0bvp4Y\tuvbAMXyrYjatlC4\u003d\t의류\t4\n2020-12-16 13:10:05.0\tZlpE7v0bvp4Y\tuvbAMXyrYjatlC4\u003d\t잡화\t4\n2020-12-16 13:10:02.0\tZndY6dwvvpo9\tuvbAMHypYDeqkig\u003d\t잡화\t7\n2020-12-16 13:09:51.0\tZlpE6Nc3vpo9\tuvbAPHCpZjGpkS8\u003d\t의류\t6\n2020-12-16 13:09:51.0\tYHdl78I/vqYM\tuvbAPX6rYTGolCo\u003d\t의류\t7\n2020-12-16 13:10:04.0\tZl9U6MEDv54d\tuvbAM3CoYzeokio\u003d\t의류\t7\n2020-12-16 13:10:04.0\tZl9U6MEDv54d\tuvbAM3CoYzeokio\u003d\t잡화\t31\n2020-12-16 13:09:45.0\tYH5w7vsmvo0E\tuvbAPHyiZzSulyw\u003d\t의류\t6\n2020-12-16 13:09:44.0\tYH5w7vsmvo0E\tuvbAPHyiZzSulyw\u003d\t의류\t10\n2020-12-16 13:10:00.0\tZlpE6dMzuLQk\tuvbAM3iqYTSplCw\u003d\t의류\t6\n2020-12-16 13:10:00.0\tZlpE6dMzuLQk\tuvbAM3iqYTSplCw\u003d\t잡화\t1\n2020-12-16 13:09:48.0\tZlpE6OonvpEp\tuvbAPX2jYTWqkiM\u003d\t도서음반\t2\n2020-12-16 13:09:50.0\tZlpE6Nc3vpo9\tuvbAPHCpZjGpkS8\u003d\t의류\t3\n2020-12-16 13:09:59.0\tZlpE6dMzuLQk\tuvbAM3iqYTSplCw\u003d\t의류\t10\n2020-12-16 13:09:53.0\tZlpE6dMzuLQk\tuvbAM3iqYTSplCw\u003d\t의류\t6\n2020-12-16 13:09:47.0\tYH5w6dEfvo4B\tuvbAMH6rZD6gkS0\u003d\t의류\t2\n2020-12-16 13:10:03.0\tYHJc6O4bvpwp\tuvbAN3+uYz+tlC8\u003d\t잡화\t2\n2020-12-16 13:10:03.0\tYHJc6O4bvpwp\tuvbAN3+uYz+tlC8\u003d\t의류\t3\n2020-12-16 13:09:52.0\tYH5w6O4bvp0J\tuvbAMnupZDWvkyw\u003d\t의류\t14\n2020-12-16 13:10:03.0\tZl9U6dQ3vpsZ\tuvbAPHCrZT+vmSk\u003d\t의류\t2\n2020-12-16 13:10:03.0\tZl9U6dQ3vpsZ\tuvbAPHCrZT+vmSk\u003d\t잡화\t4\n2020-12-16 18:14:22.0\tZl9U6dwHubUd\tuvbAPH+tYDStkCs\u003d\t가전\t4\n2020-12-16 18:14:22.0\tZl9U6dwHubUd\tuvbAPH+tYDStkCs\u003d\t잡화\t1\n2020-12-16 18:14:27.0\tYXdl6Pgfuakl\tuvbAMnyvZDeqkyw\u003d\t의류\t3\n2020-12-16 18:14:27.0\tYXdl6Pgfuakl\tuvbAMnyvZDeqkyw\u003d\t잡화\t1\n2020-12-16 18:14:25.0\tYXdl6PgfuaA1\tuvbAPHyoazSrlS4\u003d\t의류\t4\n2020-12-16 18:14:24.0\tZlBc6dEHuaAl\tuvbAMXirZj6tli4\u003d\t의류\t3\n2020-12-16 18:14:30.0\tYXdl6Moav54d\tuvbAN3msajGslSI\u003d\t의류\t9\n2020-12-16 18:14:30.0\tYXdl6Moav54d\tuvbAN3msajGslSI\u003d\t잡화\t8\n2020-12-16 18:14:28.0\tZll06MEDvqQc\tuvbAN3CqYDGtkSo\u003d\t의류\t10\n2020-12-16 18:14:23.0\tZlJ47+Yjvp4Y\tuvbAPXqtYzChlCI\u003d\t의류\t16\n2020-12-16 18:14:26.0\tZlFh6N43v54d\tuvbAMH2uYzOvkCw\u003d\t의류\t4\n2020-12-16 18:14:26.0\tZmdl6dEfvqEZ\tuvbANnuuZzSukCw\u003d\t의류\t1\n2020-12-16 18:14:26.0\tZmdl6dEfvqEZ\tuvbANnuuZzSukCw\u003d\t잡화\t2\n2020-12-16 18:14:23.0\tZmBw7vkbv54d\tuvbAMHusZzOqkys\u003d\t의류\t9\n2020-12-16 18:14:33.0\tYHdl7+YjvoA4\tuvbANnysZjSglCg\u003d\t의류\t15\n2020-12-16 18:14:34.0\tZkFg6OkOv5s1\tuvbAN3+pYjOglSI\u003d\t의류\t2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1607342042944_251694494",
+      "id": "paragraph_1607342042944_251694494",
+      "dateCreated": "2020-12-07 11:54:02.944",
+      "dateStarted": "2020-12-18 02:02:13.787",
+      "dateFinished": "2020-12-18 02:02:15.498",
+      "status": "FINISHED"
+    },
+    {
+      "text": "desc donation_classis",
+      "user": "admin",
+      "dateUpdated": "2020-12-21 14:46:44.010",
+      "config": {
+        "colWidth": 6.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "Field": "string",
+                      "Type": "string",
+                      "Null": "string",
+                      "Key": "string",
+                      "Default": "string",
+                      "Extra": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/text",
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table \u0027fast_donation.donation_classis\u0027 doesn\u0027t exist\n\tat sun.reflect.GeneratedConstructorAccessor9.newInstance(Unknown Source)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n\tat com.mysql.jdbc.Util.handleNewInstance(Util.java:404)\n\tat com.mysql.jdbc.Util.getInstance(Util.java:387)\n\tat com.mysql.jdbc.SQLError.createSQLException(SQLError.java:939)\n\tat com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3878)\n\tat com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3814)\n\tat com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2478)\n\tat com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2625)\n\tat com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2547)\n\tat com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2505)\n\tat com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:840)\n\tat com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:740)\n\tat org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:291)\n\tat org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:291)\n\tat org.apache.zeppelin.jdbc.JDBCInterpreter.executeSql(JDBCInterpreter.java:715)\n\tat org.apache.zeppelin.jdbc.JDBCInterpreter.internalInterpret(JDBCInterpreter.java:810)\n\tat org.apache.zeppelin.interpreter.AbstractInterpreter.interpret(AbstractInterpreter.java:47)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:110)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:684)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:577)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:172)\n\tat org.apache.zeppelin.scheduler.AbstractScheduler.runJob(AbstractScheduler.java:130)\n\tat org.apache.zeppelin.scheduler.ParallelScheduler.lambda$runJobInScheduler$0(ParallelScheduler.java:39)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1607342035350_935999410",
+      "id": "paragraph_1607342035350_935999410",
+      "dateCreated": "2020-12-07 11:53:55.350",
+      "dateStarted": "2020-12-08 00:51:13.375",
+      "dateFinished": "2020-12-08 00:51:13.383",
+      "status": "ERROR"
+    },
+    {
+      "text": "",
+      "user": "admin",
+      "dateUpdated": "2020-12-07 14:34:21.520",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1607342710391_-1978151741",
+      "id": "paragraph_1607342710391_-1978151741",
+      "dateCreated": "2020-12-07 12:05:10.391",
+      "status": "READY"
+    }
+  ],
+  "name": "9.기부영수증",
+  "id": "2FS1GVGDV",
+  "defaultInterpreterGroup": "fast-donation",
+  "version": "0.9.0-preview1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
